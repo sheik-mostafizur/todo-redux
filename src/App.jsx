@@ -1,13 +1,14 @@
 import {Container, Stack, Typography} from "@mui/material";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Todo from "./components/Todo";
+import {addTodo} from "./store/todosSlice";
 import AddTodo from "./components/AddTodo";
-
 function App() {
   const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(addTodo(data.todo));
   };
 
   return (
