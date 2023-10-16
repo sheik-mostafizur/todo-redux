@@ -3,7 +3,6 @@ import AddIcon from "@mui/icons-material/Add";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
 import {addTodo} from "../store/todosSlice";
-import {red} from "@mui/material/colors";
 
 const AddTodo = () => {
   const dispatch = useDispatch();
