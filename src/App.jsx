@@ -1,15 +1,10 @@
 import {Container, Stack, Typography} from "@mui/material";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import Todo from "./components/Todo";
-import {addTodo} from "./store/todosSlice";
 import AddTodo from "./components/AddTodo";
+
 function App() {
   const todos = useSelector((state) => state.todos);
-  const dispatch = useDispatch();
-
-  const onSubmit = (data) => {
-    dispatch(addTodo(data.todo));
-  };
 
   return (
     <>
@@ -18,7 +13,7 @@ function App() {
           Todo Using Redux
         </Typography>
 
-        <AddTodo onSubmit={onSubmit} />
+        <AddTodo />
 
         <Stack direction="column" spacing={2} sx={{mt: 4}}>
           {todos.map((todo) => (

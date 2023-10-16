@@ -1,14 +1,22 @@
 import {Alert, Fab, Stack, TextField} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import {useForm} from "react-hook-form";
+import {useDispatch} from "react-redux";
+import {addTodo} from "../store/todosSlice";
+import {red} from "@mui/material/colors";
 
-const AddTodo = ({onSubmit}) => {
+const AddTodo = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
+    reset,
     formState: {errors},
   } = useForm();
-
+  const onSubmit = (data) => {
+    dispatch(addTodo(data.todo));
+    reset();
+  };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack

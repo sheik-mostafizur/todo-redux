@@ -3,11 +3,7 @@ import {v4 as uuidv4} from "uuid";
 
 export const todosSlice = createSlice({
   name: "todos",
-  initialState: [
-    {id: 1, value: "Hello Todo", status: "pending"},
-    {id: 2, value: "Hello Todo", status: "pending"},
-    {id: 3, value: "Hello Todo", status: "pending"},
-  ],
+  initialState: [],
   reducers: {
     addTodo: (state, action) => {
       const todo = {
@@ -15,9 +11,23 @@ export const todosSlice = createSlice({
         value: action.payload,
         status: "pending",
       };
-      state.push(todo);
+      state.unshift(todo);
+    },
+    updateTodo: (state, action) => {
+      const {id, value, status} = action.payload;
+
+      const todoToUpdate = state.find((todo) => todo.id === id);
+
+      if (todoToUpdate && value) {
+        todoToUpdate.value = value;
+      }
+
+      if (todoToUpdate && status) {
+        todoToUpdate.status = status;
+      }
     },
   },
 });
-export const {addTodo} = todosSlice.actions;
+export const {addTodo, updateTodo} = todosSlice.actions;
+
 export default todosSlice.reducer;
