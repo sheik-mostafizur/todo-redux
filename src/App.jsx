@@ -5,7 +5,7 @@ import ShowTodos from "./components/ShowTodos";
 
 function App() {
   const todos = useSelector((state) => state.todos);
-  console.log(todos);
+
   const filteredTodos = {
     all: todos,
     pendingProcess: todos.filter(

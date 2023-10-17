@@ -76,34 +76,32 @@ const Todo = ({todo}) => {
       ) : (
         <Typography>{value}</Typography>
       )}
-
-      <Box>
-        <Select
-          size="small"
-          value={status}
-          label="Status"
-          onChange={handleChangeStatus}
-          sx={{mr: 1}}>
-          {Object.entries(statusType).map((statusT) => {
-            const {value, label} = statusT[1];
-            return (
-              <MenuItem
-                key={value}
-                value={value}
-                disabled={status == "complete" || status == "cancel"}>
-                {label}
-              </MenuItem>
-            );
-          })}
-        </Select>
-        <Fab
-          onClick={handleEdit}
-          size="small"
-          color="secondary"
-          aria-label="edit">
-          <EditIcon />
-        </Fab>
-      </Box>
+      {status != "complete" && status != "cancel" && (
+        <Box>
+          <Select
+            size="small"
+            value={status}
+            label="Status"
+            onChange={handleChangeStatus}
+            sx={{mr: 1}}>
+            {Object.entries(statusType).map((statusT) => {
+              const {value, label} = statusT[1];
+              return (
+                <MenuItem key={value} value={value}>
+                  {label}
+                </MenuItem>
+              );
+            })}
+          </Select>
+          <Fab
+            onClick={handleEdit}
+            size="small"
+            color="secondary"
+            aria-label="edit">
+            <EditIcon />
+          </Fab>
+        </Box>
+      )}
     </Paper>
   );
 };
