@@ -10,8 +10,9 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {updateTodo} from "../store/todosSlice";
+import {updateTodo, deleteTodo} from "../store/todosSlice";
 import {yellow, red, green} from "@mui/material/colors";
+import {Delete} from "@mui/icons-material";
 
 const Todo = ({todo}) => {
   const dispatch = useDispatch();
@@ -37,6 +38,11 @@ const Todo = ({todo}) => {
   const handleChangeStatus = (e) => {
     const {value: status} = e.target;
     dispatch(updateTodo({id, status}));
+  };
+
+  // delete a todo
+  const handleDelete = () => {
+    dispatch(deleteTodo(id));
   };
 
   const statusType = {
@@ -93,6 +99,14 @@ const Todo = ({todo}) => {
               );
             })}
           </Select>
+          <Fab
+            onClick={handleDelete}
+            size="small"
+            color="error"
+            aria-label="delete"
+            sx={{mr: 1}}>
+            <Delete />
+          </Fab>
           <Fab
             onClick={handleEdit}
             size="small"
