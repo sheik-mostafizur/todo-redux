@@ -84,11 +84,13 @@ const Todo = ({todo}) => {
           label="Status"
           onChange={handleChangeStatus}
           sx={{mr: 1}}>
-          {Object.entries(statusType).map((status) => {
-            const {value, label} = status[1];
-
+          {Object.entries(statusType).map((statusT) => {
+            const {value, label} = statusT[1];
             return (
-              <MenuItem key={value} value={value}>
+              <MenuItem
+                key={value}
+                value={value}
+                disabled={status == "complete" || status == "cancel"}>
                 {label}
               </MenuItem>
             );

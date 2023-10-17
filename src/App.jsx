@@ -1,10 +1,19 @@
-import {Container, Stack, Typography} from "@mui/material";
+import {Container, Typography} from "@mui/material";
 import {useSelector} from "react-redux";
-import Todo from "./components/Todo";
 import AddTodo from "./components/AddTodo";
+import ShowTodos from "./components/ShowTodos";
 
 function App() {
   const todos = useSelector((state) => state.todos);
+  console.log(todos);
+  const filteredTodos = {
+    all: todos,
+    pendingProcess: todos.filter(
+      (todo) => todo.status != "complete" && todo.status != "cancel"
+    ),
+    complete: todos.filter((todo) => todo.status == "complete"),
+    cancel: todos.filter((todo) => todo.status == "cancel"),
+  };
 
   return (
     <>
@@ -15,11 +24,14 @@ function App() {
 
         <AddTodo />
 
-        <Stack direction="column" spacing={2} sx={{mt: 4}}>
-          {todos.map((todo) => (
-            <Todo key={todo.id} todo={todo} />
-          ))}
-        </Stack>
+        <ShowTodos
+          title="Please Complete Your Task"
+          todos={filteredTodos.pendingProcess}
+        />
+
+        <ShowTodos title="Completed Task" todos={filteredTodos.complete} />
+
+        <ShowTodos title="Cancel Task" todos={filteredTodos.cancel} />
       </Container>
     </>
   );

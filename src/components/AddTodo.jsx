@@ -2,7 +2,8 @@ import {Alert, Fab, Stack, TextField} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
-import {addTodo} from "../store/todosSlice";
+import {addTodo, resetTodo} from "../store/todosSlice";
+import {RotateLeftOutlined} from "@mui/icons-material";
 
 const AddTodo = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,14 @@ const AddTodo = () => {
 
         <Fab type="submit" size="small" color="primary" aria-label="add">
           <AddIcon />
+        </Fab>
+
+        <Fab
+          onClick={() => dispatch(resetTodo())}
+          size="small"
+          color="secondary"
+          aria-label="add">
+          <RotateLeftOutlined />
         </Fab>
       </Stack>
       {errors.todo && (
