@@ -3,12 +3,7 @@ import {v4 as uuidv4} from "uuid";
 
 export const todosSlice = createSlice({
   name: "todos",
-  initialState: [
-    {id: 1, value: "Todo 1", status: "pending"},
-    {id: 2, value: "Todo 2", status: "process"},
-    {id: 3, value: "Todo 3", status: "cancel"},
-    {id: 4, value: "Todo 4", status: "complete"},
-  ],
+  initialState: [],
   reducers: {
     addTodo: (state, action) => {
       const todo = {
